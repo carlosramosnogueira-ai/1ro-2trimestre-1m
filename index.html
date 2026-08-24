@@ -1,0 +1,2078 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Portal de Apoio ao Estudante - Inclusão e Respeito às Diferenças">
+
+    <title>Portal de Apoio ao Estudante | Respeito e Inclusão</title>
+
+    <style>
+
+        /* =====================================================
+           CONFIGURAÇÕES GERAIS
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --laranja: #f47c20;
+            --laranja-escuro: #d95b00;
+            --amarelo: #fff1a8;
+            --amarelo-forte: #ffd23f;
+            --vermelho: #d62828;
+            --vermelho-escuro: #a4161a;
+            --branco: #ffffff;
+            --creme: #fffaf0;
+            --preto: #252525;
+            --cinza: #666666;
+            --sombra: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--creme);
+            color: var(--preto);
+            line-height: 1.6;
+            transition: 0.3s;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        textarea {
+            font-family: inherit;
+        }
+
+
+        /* =====================================================
+           ACESSIBILIDADE
+        ===================================================== */
+
+        body.fonte-grande {
+            font-size: 20px;
+        }
+
+        body.alto-contraste {
+            background: #000;
+            color: #fff;
+        }
+
+        body.alto-contraste header,
+        body.alto-contraste footer,
+        body.alto-contraste .card,
+        body.alto-contraste .escuta-box,
+        body.alto-contraste .quiz-box,
+        body.alto-contraste .referencia {
+            background: #000;
+            color: #fff;
+            border: 2px solid #fff;
+        }
+
+        body.alto-contraste a,
+        body.alto-contraste h1,
+        body.alto-contraste h2,
+        body.alto-contraste h3 {
+            color: #ffff00;
+        }
+
+
+        /* =====================================================
+           MODO ESCURO
+        ===================================================== */
+
+        body.dark {
+            --creme: #171717;
+            --branco: #242424;
+            --preto: #eeeeee;
+            --cinza: #cccccc;
+
+            background: #171717;
+            color: #eeeeee;
+        }
+
+        body.dark .card,
+        body.dark .escuta-box,
+        body.dark .quiz-box,
+        body.dark .referencia {
+            background: #242424;
+            color: #eeeeee;
+        }
+
+        body.dark input,
+        body.dark textarea {
+            background: #333;
+            color: white;
+            border-color: #777;
+        }
+
+
+        /* =====================================================
+           CABEÇALHO
+        ===================================================== */
+
+        header {
+            background: var(--laranja);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--sombra);
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: auto;
+            padding: 15px 20px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .logo-gato {
+            width: 45px;
+            height: 45px;
+            background: var(--amarelo);
+            border: 4px solid var(--preto);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        nav a {
+            padding: 8px 12px;
+            border-radius: 20px;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            background: var(--vermelho);
+        }
+
+
+        /* =====================================================
+           BOTÕES DE ACESSIBILIDADE
+        ===================================================== */
+
+        .acessibilidade {
+            background: var(--vermelho);
+            padding: 8px;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .acessibilidade button {
+            background: white;
+            color: var(--preto);
+            border: none;
+            padding: 7px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .acessibilidade button:hover {
+            transform: scale(1.05);
+            background: var(--amarelo);
+        }
+
+
+        /* =====================================================
+           CONTAINER
+        ===================================================== */
+
+        .container {
+            max-width: 1150px;
+            margin: auto;
+            padding: 70px 20px;
+        }
+
+        .titulo-secao {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .titulo-secao h2 {
+            color: var(--vermelho);
+            font-size: 2.3rem;
+            margin-bottom: 10px;
+        }
+
+        .titulo-secao p {
+            color: var(--cinza);
+            max-width: 700px;
+            margin: auto;
+        }
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .hero {
+            min-height: 600px;
+
+            display: flex;
+            align-items: center;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(244, 124, 32, 0.95),
+                    rgba(255, 241, 168, 0.85)
+                );
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: var(--vermelho);
+            border-radius: 50%;
+            right: -100px;
+            top: -100px;
+            opacity: 0.15;
+        }
+
+        .hero-conteudo {
+            max-width: 1150px;
+            margin: auto;
+            padding: 70px 20px;
+
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            line-height: 1.1;
+            color: var(--vermelho-escuro);
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: var(--preto);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 650px;
+            margin-bottom: 25px;
+        }
+
+        .botoes {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            border: none;
+            padding: 13px 22px;
+            border-radius: 30px;
+            background: var(--vermelho);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: var(--vermelho-escuro);
+            transform: translateY(-3px);
+        }
+
+        .btn-secundario {
+            background: white;
+            color: var(--vermelho);
+        }
+
+        .btn-secundario:hover {
+            background: var(--amarelo);
+            color: var(--vermelho-escuro);
+        }
+
+
+        /* =====================================================
+           ILUSTRAÇÃO DO GATO
+        ===================================================== */
+
+        .gato-ilustracao {
+            width: 330px;
+            height: 330px;
+            margin: auto;
+
+            background: var(--laranja);
+            border: 8px solid var(--preto);
+            border-radius: 48% 48% 45% 45%;
+
+            position: relative;
+
+            box-shadow: 12px 15px 0 var(--vermelho);
+
+            animation: flutuar 3s ease-in-out infinite;
+        }
+
+        .orelha {
+            position: absolute;
+            top: -45px;
+            width: 90px;
+            height: 90px;
+            background: var(--laranja);
+            border: 8px solid var(--preto);
+            transform: rotate(45deg);
+            z-index: -1;
+        }
+
+        .orelha.esquerda {
+            left: 25px;
+        }
+
+        .orelha.direita {
+            right: 25px;
+        }
+
+        .olho {
+            position: absolute;
+            top: 90px;
+            width: 55px;
+            height: 65px;
+            background: white;
+            border: 5px solid var(--preto);
+            border-radius: 50%;
+        }
+
+        .olho.esquerdo {
+            left: 70px;
+        }
+
+        .olho.direito {
+            right: 70px;
+        }
+
+        .pupila {
+            width: 15px;
+            height: 30px;
+            background: black;
+            border-radius: 50%;
+            margin: 20px auto;
+        }
+
+        .nariz {
+            position: absolute;
+            top: 160px;
+            left: calc(50% - 18px);
+            width: 36px;
+            height: 28px;
+            background: #ff9eb5;
+            border: 4px solid var(--preto);
+            border-radius: 50%;
+        }
+
+        .boca {
+            position: absolute;
+            top: 190px;
+            left: 50%;
+            width: 65px;
+            height: 40px;
+            transform: translateX(-50%);
+            border-bottom: 5px solid var(--preto);
+            border-radius: 50%;
+        }
+
+        .bigodes {
+            position: absolute;
+            top: 175px;
+            width: 80px;
+            height: 3px;
+            background: var(--preto);
+        }
+
+        .bigode1 {
+            left: -55px;
+            transform: rotate(10deg);
+        }
+
+        .bigode2 {
+            left: -55px;
+            top: 195px;
+            transform: rotate(-10deg);
+        }
+
+        .bigode3 {
+            right: -55px;
+            transform: rotate(-10deg);
+        }
+
+        .bigode4 {
+            right: -55px;
+            top: 195px;
+            transform: rotate(10deg);
+        }
+
+        @keyframes flutuar {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
+
+        /* =====================================================
+           CARDS
+        ===================================================== */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--branco);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: var(--sombra);
+            border-top: 7px solid var(--laranja);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-top-color: var(--vermelho);
+        }
+
+        .icone {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: var(--amarelo);
+            border-radius: 50%;
+            font-size: 30px;
+            margin-bottom: 18px;
+        }
+
+        .card h3 {
+            color: var(--vermelho);
+            margin-bottom: 10px;
+        }
+
+
+        /* =====================================================
+           FAIXA DE FRASE
+        ===================================================== */
+
+        .frase {
+            background: var(--vermelho);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .frase blockquote {
+            max-width: 850px;
+            margin: auto;
+            font-size: 1.7rem;
+            font-weight: bold;
+        }
+
+        .frase span {
+            display: block;
+            margin-top: 15px;
+            color: var(--amarelo);
+        }
+
+
+        /* =====================================================
+           PORTAL DE ESCUTA
+        ===================================================== */
+
+        .escuta {
+            background: var(--amarelo);
+        }
+
+        .escuta-box {
+            background: white;
+            max-width: 850px;
+            margin: auto;
+            padding: 35px;
+            border-radius: 25px;
+            box-shadow: var(--sombra);
+        }
+
+        .escuta-box h3 {
+            color: var(--vermelho);
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-top: 18px;
+            margin-bottom: 5px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #ddd;
+            border-radius: 12px;
+            outline: none;
+            font-size: 1rem;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: var(--laranja);
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .mensagem {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 15px;
+            background: #e8f8e8;
+            color: #165b25;
+            display: none;
+            font-weight: bold;
+        }
+
+        .orientacoes {
+            margin-top: 30px;
+            display: grid;
+            gap: 10px;
+        }
+
+        .orientacao {
+            background: var(--creme);
+            padding: 15px;
+            border-left: 5px solid var(--vermelho);
+            border-radius: 8px;
+        }
+
+
+        /* =====================================================
+           QUIZ
+        ===================================================== */
+
+        .quiz-box {
+            max-width: 850px;
+            margin: auto;
+            background: white;
+            padding: 35px;
+            border-radius: 25px;
+            box-shadow: var(--sombra);
+        }
+
+        .pergunta {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 15px;
+            background: var(--amarelo);
+        }
+
+        .pergunta h3 {
+            color: var(--vermelho-escuro);
+            margin-bottom: 12px;
+        }
+
+        .opcao {
+            display: block;
+            background: white;
+            padding: 10px;
+            margin: 7px 0;
+            border-radius: 10px;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .opcao:hover {
+            border-color: var(--laranja);
+        }
+
+        .resultado {
+            display: none;
+            margin-top: 25px;
+            padding: 20px;
+            background: var(--laranja);
+            color: white;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+
+        /* =====================================================
+           CARROSSEL
+        ===================================================== */
+
+        .carrossel {
+            max-width: 900px;
+            margin: auto;
+            overflow: hidden;
+            border-radius: 25px;
+            box-shadow: var(--sombra);
+            position: relative;
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.6s ease;
+        }
+
+        .slide {
+            min-width: 100%;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 50px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--laranja),
+                    var(--amarelo)
+                );
+        }
+
+        .slide:nth-child(2) {
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--amarelo),
+                    #fff
+                );
+        }
+
+        .slide:nth-child(3) {
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--vermelho),
+                    var(--laranja)
+                );
+            color: white;
+        }
+
+        .slide h3 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .controles {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 15px;
+            transform: translateY(-50%);
+        }
+
+        .controles button {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            border: none;
+            background: var(--vermelho);
+            color: white;
+            font-size: 25px;
+            cursor: pointer;
+        }
+
+
+        /* =====================================================
+           REFERÊNCIAS
+        ===================================================== */
+
+        .referencias {
+            background: var(--amarelo);
+        }
+
+        .referencia {
+            background: white;
+            padding: 22px;
+            margin-bottom: 15px;
+            border-radius: 15px;
+            border-left: 6px solid var(--laranja);
+        }
+
+        .referencia h3 {
+            color: var(--vermelho);
+            margin-bottom: 8px;
+        }
+
+        .referencia a {
+            color: #b51d1d;
+            font-weight: bold;
+        }
+
+
+        /* =====================================================
+           VOLTAR AO TOPO
+        ===================================================== */
+
+        #topo {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+
+            width: 50px;
+            height: 50px;
+
+            border: none;
+            border-radius: 50%;
+
+            background: var(--vermelho);
+            color: white;
+
+            font-size: 22px;
+            cursor: pointer;
+
+            display: none;
+
+            box-shadow: var(--sombra);
+            z-index: 999;
+        }
+
+
+        /* =====================================================
+           RODAPÉ
+        ===================================================== */
+
+        footer {
+            background: var(--vermelho-escuro);
+            color: white;
+            text-align: center;
+            padding: 35px 20px;
+        }
+
+        footer strong {
+            color: var(--amarelo);
+        }
+
+
+        /* =====================================================
+           RESPONSIVIDADE
+        ===================================================== */
+
+        @media (max-width: 850px) {
+
+            .navbar {
+                flex-direction: column;
+            }
+
+            .hero-conteudo {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .botoes {
+                justify-content: center;
+            }
+
+            .gato-ilustracao {
+                width: 270px;
+                height: 270px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .titulo-secao h2 {
+                font-size: 1.9rem;
+            }
+
+            nav ul {
+                gap: 2px;
+            }
+
+            nav a {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            .container {
+                padding: 50px 15px;
+            }
+
+            .hero {
+                min-height: auto;
+            }
+
+            .hero-conteudo {
+                padding: 60px 15px;
+            }
+
+            .gato-ilustracao {
+                width: 220px;
+                height: 220px;
+            }
+
+            .escuta-box,
+            .quiz-box {
+                padding: 22px;
+            }
+
+            .slide {
+                min-height: 250px;
+                padding: 30px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         CABEÇALHO
+    ====================================================== -->
+
+    <header>
+
+        <div class="navbar">
+
+            <div class="logo">
+
+                <div class="logo-gato">
+                    🐱
+                </div>
+
+                <span>
+                    Portal do Estudante
+                </span>
+
+            </div>
+
+
+            <nav>
+
+                <ul>
+
+                    <li>
+                        <a href="#inicio">Início</a>
+                    </li>
+
+                    <li>
+                        <a href="#inclusao">Inclusão</a>
+                    </li>
+
+                    <li>
+                        <a href="#escuta">Portal de Escuta</a>
+                    </li>
+
+                    <li>
+                        <a href="#quiz">Quiz</a>
+                    </li>
+
+                    <li>
+                        <a href="#referencias">Referências</a>
+                    </li>
+
+                </ul>
+
+            </nav>
+
+        </div>
+
+
+        <!-- ACESSIBILIDADE -->
+
+        <div class="acessibilidade">
+
+            <button onclick="alternarModoEscuro()">
+                🌙 Modo escuro
+            </button>
+
+            <button onclick="aumentarFonte()">
+                🔠 Aumentar fonte
+            </button>
+
+            <button onclick="diminuirFonte()">
+                🔡 Diminuir fonte
+            </button>
+
+            <button onclick="alternarContraste()">
+                👁 Alto contraste
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+
+        <!-- =====================================================
+             INÍCIO
+        ====================================================== -->
+
+        <section id="inicio" class="hero">
+
+            <div class="hero-conteudo">
+
+                <div>
+
+                    <h1>
+                        Respeito
+                        <span>é para todos!</span>
+                    </h1>
+
+                    <p>
+                        Bem-vindo ao Portal de Apoio ao Estudante.
+                        Aqui você encontrará informações, orientações
+                        e apoio para construir uma escola mais
+                        inclusiva, acolhedora e respeitosa.
+                    </p>
+
+                    <p>
+                        <strong>
+                            Cada pessoa é única. E é justamente isso
+                            que torna nossa comunidade especial.
+                        </strong>
+                    </p>
+
+                    <div class="botoes">
+
+                        <a class="btn" href="#inclusao">
+                            Conheça o tema
+                        </a>
+
+                        <a class="btn btn-secundario" href="#escuta">
+                            Portal de Escuta
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- GATO DECORATIVO -->
+
+                <div class="gato-ilustracao">
+
+                    <div class="orelha esquerda"></div>
+                    <div class="orelha direita"></div>
+
+                    <div class="olho esquerdo">
+                        <div class="pupila"></div>
+                    </div>
+
+                    <div class="olho direito">
+                        <div class="pupila"></div>
+                    </div>
+
+                    <div class="nariz"></div>
+
+                    <div class="boca"></div>
+
+                    <div class="bigodes bigode1"></div>
+                    <div class="bigodes bigode2"></div>
+                    <div class="bigodes bigode3"></div>
+                    <div class="bigodes bigode4"></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             INCLUSÃO
+        ====================================================== -->
+
+        <section id="inclusao">
+
+            <div class="container">
+
+                <div class="titulo-secao">
+
+                    <h2>
+                        🧡 O que significa inclusão?
+                    </h2>
+
+                    <p>
+                        Inclusão significa criar espaços onde todas
+                        as pessoas possam participar, aprender,
+                        conviver e serem respeitadas.
+                    </p>
+
+                </div>
+
+
+                <div class="cards">
+
+
+                    <article class="card">
+
+                        <div class="icone">
+                            🤝
+                        </div>
+
+                        <h3>
+                            Respeitar
+                        </h3>
+
+                        <p>
+                            Respeitar significa reconhecer que cada
+                            pessoa possui características, opiniões,
+                            culturas, habilidades e histórias
+                            diferentes.
+                        </p>
+
+                    </article>
+
+
+                    <article class="card">
+
+                        <div class="icone">
+                            ❤️
+                        </div>
+
+                        <h3>
+                            Ter empatia
+                        </h3>
+
+                        <p>
+                            A empatia nos ajuda a tentar compreender
+                            os sentimentos e as experiências de
+                            outras pessoas antes de julgá-las.
+                        </p>
+
+                    </article>
+
+
+                    <article class="card">
+
+                        <div class="icone">
+                            🌎
+                        </div>
+
+                        <h3>
+                            Valorizar diferenças
+                        </h3>
+
+                        <p>
+                            Diferenças de cultura, aparência,
+                            deficiência, origem, religião, opiniões
+                            e formas de aprender fazem parte da
+                            diversidade humana.
+                        </p>
+
+                    </article>
+
+
+                    <article class="card">
+
+                        <div class="icone">
+                            🧑‍🦽
+                        </div>
+
+                        <h3>
+                            Acessibilidade
+                        </h3>
+
+                        <p>
+                            Uma escola inclusiva busca remover
+                            barreiras para que estudantes com
+                            diferentes necessidades possam
+                            participar plenamente.
+                        </p>
+
+                    </article>
+
+
+                    <article class="card">
+
+                        <div class="icone">
+                            🗣️
+                        </div>
+
+                        <h3>
+                            Ouvir
+                        </h3>
+
+                        <p>
+                            Escutar o outro com atenção é uma forma
+                            simples de demonstrar respeito e
+                            construir relações melhores.
+                        </p>
+
+                    </article>
+
+
+                    <article class="card">
+
+                        <div class="icone">
+                            🕊️
+                        </div>
+
+                        <h3>
+                            Combater preconceitos
+                        </h3>
+
+                        <p>
+                            Piadas, apelidos ofensivos, exclusão e
+                            comentários preconceituosos não são
+                            brincadeiras quando machucam alguém.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             FRASE
+        ====================================================== -->
+
+        <section class="frase">
+
+            <blockquote>
+
+                “Uma escola inclusiva é aquela em que cada estudante
+                pode sentir que pertence, aprender e ser respeitado.”
+
+                <span>
+                    Inclusão começa com pequenas atitudes.
+                </span>
+
+            </blockquote>
+
+        </section>
+
+
+        <!-- =====================================================
+             CARROSSEL
+        ====================================================== -->
+
+        <section>
+
+            <div class="container">
+
+                <div class="titulo-secao">
+
+                    <h2>
+                        🌈 Todos fazem parte
+                    </h2>
+
+                    <p>
+                        Pequenas atitudes podem transformar
+                        o ambiente escolar.
+                    </p>
+
+                </div>
+
+
+                <div class="carrossel">
+
+                    <div class="slides" id="slides">
+
+                        <div class="slide">
+
+                            <div>
+
+                                <h3>
+                                    🤝 Respeito
+                                </h3>
+
+                                <p>
+                                    Trate as pessoas como você gostaria
+                                    de ser tratado.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="slide">
+
+                            <div>
+
+                                <h3>
+                                    🧡 Empatia
+                                </h3>
+
+                                <p>
+                                    Antes de julgar alguém, tente
+                                    compreender sua história.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="slide">
+
+                            <div>
+
+                                <h3>
+                                    ❤️ Inclusão
+                                </h3>
+
+                                <p>
+                                    Ninguém deve ser deixado de lado
+                                    por ser diferente.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="controles">
+
+                        <button onclick="anteriorSlide()">
+                            ‹
+                        </button>
+
+                        <button onclick="proximoSlide()">
+                            ›
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             PORTAL DE ESCUTA
+        ====================================================== -->
+
+        <section id="escuta" class="escuta">
+
+            <div class="container">
+
+                <div class="titulo-secao">
+
+                    <h2>
+                        💬 Portal de Escuta
+                    </h2>
+
+                    <p>
+                        Um espaço de desabafo simulado para lembrar
+                        que seus sentimentos importam.
+                    </p>
+
+                </div>
+
+
+                <div class="escuta-box">
+
+                    <h3>
+                        Você quer contar alguma coisa?
+                    </h3>
+
+                    <p>
+                        Escreva abaixo o que você gostaria de
+                        compartilhar. Este formulário é apenas uma
+                        simulação e nenhuma informação será
+                        armazenada.
+                    </p>
+
+
+                    <form id="formDesabafo">
+
+                        <label for="nome">
+                            Seu nome ou apelido (opcional):
+                        </label>
+
+                        <input
+                            type="text"
+                            id="nome"
+                            placeholder="Digite seu nome ou apelido">
+
+
+                        <label for="desabafo">
+                            Escreva seu desabafo:
+                        </label>
+
+                        <textarea
+                            id="desabafo"
+                            placeholder="Escreva aqui o que você está sentindo..."></textarea>
+
+
+                        <br><br>
+
+                        <button class="btn" type="submit">
+                            💌 Enviar desabafo
+                        </button>
+
+                    </form>
+
+
+                    <div id="mensagem" class="mensagem">
+                    </div>
+
+
+                    <div class="orientacoes">
+
+                        <div class="orientacao">
+                            👨‍🏫 <strong>Professor:</strong>
+                            procure um professor em quem você confie.
+                        </div>
+
+                        <div class="orientacao">
+                            🏫 <strong>Pedagogo ou direção:</strong>
+                            a escola pode ajudar a encontrar soluções
+                            para situações de desrespeito.
+                        </div>
+
+                        <div class="orientacao">
+                            👨‍👩‍👧 <strong>Família:</strong>
+                            converse com seus responsáveis ou outro
+                            familiar de confiança.
+                        </div>
+
+                        <div class="orientacao">
+                            🧑 <strong>Adulto de confiança:</strong>
+                            você também pode procurar outro adulto
+                            responsável que possa oferecer apoio.
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             QUIZ
+        ====================================================== -->
+
+        <section id="quiz">
+
+            <div class="container">
+
+                <div class="titulo-secao">
+
+                    <h2>
+                        🧠 Quiz da Inclusão
+                    </h2>
+
+                    <p>
+                        Teste seus conhecimentos sobre respeito
+                        e convivência.
+                    </p>
+
+                </div>
+
+
+                <div class="quiz-box">
+
+
+                    <!-- PERGUNTA 1 -->
+
+                    <div class="pergunta">
+
+                        <h3>
+                            1. Qual atitude demonstra respeito?
+                        </h3>
+
+                        <label class="opcao">
+                            <input type="radio" name="q1" value="a">
+                            Ignorar uma pessoa por ser diferente.
+                        </label>
+
+                        <label class="opcao">
+                            <input type="radio" name="q1" value="b">
+                            Ouvir e respeitar suas características.
+                        </label>
+
+                        <label class="opcao">
+                            <input type="radio" name="q1" value="c">
+                            Fazer piadas sobre sua aparência.
+                        </label>
+
+                    </div>
+
+
+                    <!-- PERGUNTA 2 -->
+
+                    <div class="pergunta">
+
+                        <h3>
+                            2. O que é inclusão?
+                        </h3>
+
+                        <label class="opcao">
+                            <input type="radio" name="q2" value="a">
+                            Deixar algumas pessoas de fora.
+                        </label>
+
+                        <label class="opcao">
+                            <input type="radio" name="q2" value="b">
+                            Fazer todos pensarem exatamente igual.
+                        </label>
+
+                        <label class="opcao">
+                            <input type="radio" name="q2" value="c">
+                            Criar condições para que todos participem.
+                        </label>
+
+                    </div>
+
+
+                    <!-- PERGUNTA 3 -->
+
+                    <div class="pergunta">
+
+                        <h3>
+                            3. O que fazer ao perceber um colega
+                            sendo excluído?
+                        </h3>
+
+                        <label class="opcao">
+                            <input type="radio" name="q3" value="a">
+                            Ajudar e procurar um adulto se necessário.
+                        </label>
+
+                        <label class="opcao">
+                            <input type="radio" name="q3" value="b">
+                            Fingir que não viu.
+                        </label>
+
+                        <label class="opcao">
+                            <input type="radio" name="q3" value="c">
+                            Participar da exclusão.
+                        </label>
+
+                    </div>
+
+
+                    <!-- PERGUNTA 4 -->
+
+                    <div class="pergunta">
+
+                        <h3>
+                            4. Uma piada preconceituosa é aceitável
+                            quando alguém se sente ofendido?
+                        </h3>
+
+                        <label class="opcao">
+                            <input type="radio" name="q4" value="a">
+                            Sim, porque é apenas uma brincadeira.
+                        </label>
+
+                        <label class="opcao">
+                            <input type="radio" name="q4" value="b">
+                            Não. É importante respeitar os sentimentos
+                            e a dignidade das pessoas.
+                        </label>
+
+                        <label class="opcao">
+                            <input type="radio" name="q4" value="c">
+                            Sim, se outras pessoas rirem.
+                        </label>
+
+                    </div>
+
+
+                    <!-- PERGUNTA 5 -->
+
+                    <div class="pergunta">
+
+                        <h3>
+                            5. Qual atitude ajuda a construir uma
+                            escola mais inclusiva?
+                        </h3>
+
+                        <label class="opcao">
+                            <input type="radio" name="q5" value="a">
+                            Espalhar apelidos ofensivos.
+                        </label>
+
+                        <label class="opcao">
+                            <input type="radio" name="q5" value="b">
+                            Respeitar diferenças e combater a exclusão.
+                        </label>
+
+                        <label class="opcao">
+                            <input type="radio" name="q5" value="c">
+                            Evitar conversar com pessoas diferentes.
+                        </label>
+
+                    </div>
+
+
+                    <button
+                        class="btn"
+                        onclick="corrigirQuiz()">
+
+                        🎯 Ver resultado
+
+                    </button>
+
+
+                    <div id="resultado" class="resultado">
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             REFERÊNCIAS
+        ====================================================== -->
+
+        <section id="referencias" class="referencias">
+
+            <div class="container">
+
+                <div class="titulo-secao">
+
+                    <h2>
+                        📚 Referências
+                    </h2>
+
+                    <p>
+                        Fontes confiáveis utilizadas para desenvolver
+                        o conteúdo do portal.
+                    </p>
+
+                </div>
+
+
+                <div class="referencia">
+
+                    <h3>
+                        UNICEF Brasil — Estatuto da Criança e do Adolescente
+                    </h3>
+
+                    <p>
+                        Material que apresenta direitos fundamentais
+                        de crianças e adolescentes, incluindo respeito,
+                        dignidade, liberdade e proteção contra
+                        discriminação.
+                    </p>
+
+                    <br>
+
+                    <a
+                        href="https://www.unicef.org/brazil/estatuto-da-crianca-e-do-adolescente"
+                        target="_blank"
+                        rel="noopener noreferrer">
+
+                        🔗 Acessar fonte
+
+                    </a>
+
+                </div>
+
+
+                <div class="referencia">
+
+                    <h3>
+                        UNICEF Brasil — Educação que Protege
+                    </h3>
+
+                    <p>
+                        Material sobre a importância da escola como
+                        espaço seguro, acolhedor e capaz de valorizar
+                        as diferenças.
+                    </p>
+
+                    <br>
+
+                    <a
+                        href="https://www.unicef.org/brazil/educacao-que-protege"
+                        target="_blank"
+                        rel="noopener noreferrer">
+
+                        🔗 Acessar fonte
+
+                    </a>
+
+                </div>
+
+
+                <div class="referencia">
+
+                    <h3>
+                        Ministério da Educação — Programa Saúde na Escola
+                    </h3>
+
+                    <p>
+                        O material destaca a importância da empatia,
+                        do respeito às diferenças e da resolução
+                        pacífica de conflitos na convivência escolar.
+                    </p>
+
+                    <br>
+
+                    <a
+                        href="https://www.gov.br/mec/pt-br/programa-saude-na-escola/matriz-de-expectativa-de-aprendizagem/matriz-4"
+                        target="_blank"
+                        rel="noopener noreferrer">
+
+                        🔗 Acessar fonte
+
+                    </a>
+
+                </div>
+
+
+                <div class="referencia">
+
+                    <h3>
+                        Prefeitura de Curitiba — Bullying não é Brincadeira
+                    </h3>
+
+                    <p>
+                        Projeto educacional voltado à promoção do
+                        respeito às diferenças, singularidades e
+                        diversidade no ambiente escolar.
+                    </p>
+
+                    <br>
+
+                    <a
+                        href="https://www.curitiba.pr.gov.br/noticias/projeto-bullying-nao-e-brincadeira-e-implantando-em-mais-33-escolas-da-rede/39250"
+                        target="_blank"
+                        rel="noopener noreferrer">
+
+                        🔗 Acessar fonte
+
+                    </a>
+
+                </div>
+
+
+                <div class="referencia">
+
+                    <h3>
+                        UNICEF — Relações Raciais na Escola
+                    </h3>
+
+                    <p>
+                        Publicação sobre a construção de uma educação
+                        inclusiva e o respeito à diversidade racial
+                        no ambiente escolar.
+                    </p>
+
+                    <br>
+
+                    <a
+                        href="https://www.unicef.org/brazil/innocenti/brazil/relatorios/indicadores-da-qualidade-na-educacao-relacoes-raciais-na-escola"
+                        target="_blank"
+                        rel="noopener noreferrer">
+
+                        🔗 Acessar fonte
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         RODAPÉ
+    ====================================================== -->
+
+    <footer>
+
+        <p>
+            🐱 <strong>Portal de Apoio ao Estudante</strong>
+        </p>
+
+        <p>
+            Inclusão, respeito, empatia e acolhimento.
+        </p>
+
+        <p>
+            Projeto acadêmico desenvolvido em HTML, CSS e JavaScript.
+        </p>
+
+    </footer>
+
+
+    <!-- BOTÃO VOLTAR AO TOPO -->
+
+    <button
+        id="topo"
+        onclick="voltarAoTopo()"
+        title="Voltar ao topo">
+
+        ↑
+
+    </button>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script>
+
+
+        /* =====================================================
+           MODO ESCURO
+        ====================================================== */
+
+        function alternarModoEscuro() {
+
+            document.body.classList.toggle("dark");
+
+        }
+
+
+        /* =====================================================
+           TAMANHO DA FONTE
+        ====================================================== */
+
+        function aumentarFonte() {
+
+            document.body.classList.add("fonte-grande");
+
+        }
+
+
+        function diminuirFonte() {
+
+            document.body.classList.remove("fonte-grande");
+
+        }
+
+
+        /* =====================================================
+           ALTO CONTRASTE
+        ====================================================== */
+
+        function alternarContraste() {
+
+            document.body.classList.toggle("alto-contraste");
+
+        }
+
+
+        /* =====================================================
+           PORTAL DE ESCUTA
+        ====================================================== */
+
+        const formulario =
+            document.getElementById("formDesabafo");
+
+        const mensagem =
+            document.getElementById("mensagem");
+
+
+        formulario.addEventListener("submit", function (evento) {
+
+            evento.preventDefault();
+
+
+            const nome =
+                document.getElementById("nome").value.trim();
+
+
+            if (nome !== "") {
+
+                mensagem.innerHTML =
+                    "🧡 Obrigado por compartilhar, " +
+                    nome +
+                    ". Seus sentimentos são importantes. " +
+                    "Você não precisa enfrentar uma situação difícil sozinho. " +
+                    "Procure um professor, pedagogo, familiar ou outro adulto de confiança.";
+
+            } else {
+
+                mensagem.innerHTML =
+                    "🧡 Obrigado por compartilhar. Seus sentimentos são importantes. " +
+                    "Você não precisa enfrentar uma situação difícil sozinho. " +
+                    "Procure um professor, pedagogo, familiar ou outro adulto de confiança.";
+
+            }
+
+
+            mensagem.style.display = "block";
+
+
+            /*
+                O formulário é somente uma simulação.
+                Nenhuma informação é armazenada.
+            */
+
+            formulario.reset();
+
+        });
+
+
+        /* =====================================================
+           QUIZ
+        ====================================================== */
+
+        function corrigirQuiz() {
+
+            const respostasCorretas = {
+
+                q1: "b",
+                q2: "c",
+                q3: "a",
+                q4: "b",
+                q5: "b"
+
+            };
+
+
+            let pontos = 0;
+
+
+            for (let pergunta in respostasCorretas) {
+
+                const resposta =
+                    document.querySelector(
+                        'input[name="' +
+                        pergunta +
+                        '"]:checked'
+                    );
+
+
+                if (resposta &&
+                    resposta.value ===
+                    respostasCorretas[pergunta]) {
+
+                    pontos++;
+
+                }
+
+            }
+
+
+            const resultado =
+                document.getElementById("resultado");
+
+
+            let texto;
+
+
+            if (pontos === 5) {
+
+                texto =
+                    "🏆 Excelente! Você acertou 5 de 5! " +
+                    "Você demonstrou conhecer muito bem os princípios de inclusão e respeito.";
+
+            } else if (pontos >= 3) {
+
+                texto =
+                    "👏 Muito bem! Você acertou " +
+                    pontos +
+                    " de 5 perguntas. Continue aprendendo e praticando o respeito.";
+
+            } else {
+
+                texto =
+                    "💡 Você acertou " +
+                    pontos +
+                    " de 5. Não desanime! " +
+                    "Aprender sobre inclusão é uma forma de ajudar a construir uma escola melhor.";
+
+            }
+
+
+            resultado.innerHTML = texto;
+
+            resultado.style.display = "block";
+
+
+            resultado.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+        }
+
+
+        /* =====================================================
+           CARROSSEL
+        ====================================================== */
+
+        let slideAtual = 0;
+
+        const slides =
+            document.getElementById("slides");
+
+        const totalSlides =
+            document.querySelectorAll(".slide").length;
+
+
+        function mostrarSlide() {
+
+            slides.style.transform =
+                "translateX(-" +
+                (slideAtual * 100) +
+                "%)";
+
+        }
+
+
+        function proximoSlide() {
+
+            slideAtual++;
+
+            if (slideAtual >= totalSlides) {
+
+                slideAtual = 0;
+
+            }
+
+            mostrarSlide();
+
+        }
+
+
+        function anteriorSlide() {
+
+            slideAtual--;
+
+            if (slideAtual < 0) {
+
+                slideAtual = totalSlides - 1;
+
+            }
+
+            mostrarSlide();
+
+        }
+
+
+        /* TROCA AUTOMÁTICA */
+
+        setInterval(proximoSlide, 5000);
+
+
+        /* =====================================================
+           VOLTAR AO TOPO
+        ====================================================== */
+
+        const botaoTopo =
+            document.getElementById("topo");
+
+
+        window.addEventListener("scroll", function () {
+
+            if (window.scrollY > 400) {
+
+                botaoTopo.style.display = "block";
+
+            } else {
+
+                botaoTopo.style.display = "none";
+
+            }
+
+        });
+
+
+        function voltarAoTopo() {
+
+            window.scrollTo({
+
+                top: 0,
+                behavior: "smooth"
+
+            });
+
+        }
+
+    </script>
+
+</body>
+
+</html>
